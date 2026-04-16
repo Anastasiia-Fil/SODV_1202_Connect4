@@ -66,7 +66,18 @@ namespace ConnectFourProject
                    CheckVertical(symbol) ||
                    CheckDiagonal(symbol);
         }
+        public bool IsBoardFull()
+        {
+            for (int col = 0; col < 7; col++)
+            {
+                if (grid[0, col] == '.')
+                {
+                    return false;
+                }
+            }
 
+            return true;
+        }
         private bool CheckHorizontal(char symbol)
         {
             for (int row = 0; row < 6; row++)

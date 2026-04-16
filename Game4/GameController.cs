@@ -19,34 +19,59 @@ namespace ConnectFourProject
 
         public void StartGame()
         {
-            bool gameRunning = true;
+            bool playAgain = true;
 
-            while (gameRunning)
+            while (playAgain)
             {
-                Console.Clear();
-                board.DisplayBoard();
+                board.InitializeBoard();
+                currentPlayer = player1;
+                bool gameRunning = true;
 
-                int column = currentPlayer.MakeMove();
-
-                if (!board.DropDisc(column, currentPlayer.Symbol))
-                {
-                    Console.WriteLine("This column is full. Try another one.");
-                    Console.ReadKey();
-                    continue;
-                }
-
-                // check winner after dropping the disc
-                if (board.CheckWinner(currentPlayer.Symbol))
+                while (gameRunning)
                 {
                     Console.Clear();
                     board.DisplayBoard();
-                    Console.WriteLine($"{currentPlayer.Name} wins!");
-                    Console.ReadKey();
-                    break;
+
+                    int column = currentPlayer.MakeMove();
+
+                    if (!board.DropDisc(column, currentPlayer.Symbol))
+                    {
+                        Console.WriteLine("This column is full. Try another one.");
+                        Console.ReadKey();
+                        continue;
+                    }
+
+                    if (board.CheckWinner(currentPlayer.Symbol))
+                    {
+                        Console.Clear();
+                        board.DisplayBoard();
+                        Console.WriteLine($"{currentPlayer.Name} wins!");
+                        gameRunning = false;
+                    }
+                    else if (board.IsBoardFull())
+                    {
+                        Console.Clear();
+                        board.DisplayBoard();
+                        Console.WriteLine("The game is a draw.");
+                        gameRunning = false;
+                    }
+                    else
+                    {
+                        SwitchPlayer();
+                    }
                 }
 
-                SwitchPlayer();
+                Console.Write("Do you want to play again? (Y/N): ");
+                string answer = Console.ReadLine().ToUpper();
+
+                if (answer != "Y")
+                {
+                    playAgain = false;
+                }
             }
+
+            Console.WriteLine("Thanks for playing!");
+            Console.ReadKey();
         }
 
         private void SwitchPlayer()

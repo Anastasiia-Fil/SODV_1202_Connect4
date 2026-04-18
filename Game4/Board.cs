@@ -28,13 +28,13 @@ namespace ConnectFourProject
         public void DisplayBoard()
         {
             Console.WriteLine();
-            Console.WriteLine("  1   2   3   4   5   6   7");
+            Console.WriteLine("  1  2  3  4  5  6  7");
 
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < columns; col++)
                 {
-                    Console.Write($" {grid[row, col]} ");
+                    Console.Write($"  {grid[row, col]}");
                 }
                 Console.WriteLine();
             }
@@ -60,15 +60,17 @@ namespace ConnectFourProject
 
             return false;
         }
+
         public bool CheckWinner(char symbol)
         {
             return CheckHorizontal(symbol) ||
                    CheckVertical(symbol) ||
                    CheckDiagonal(symbol);
         }
+
         public bool IsBoardFull()
         {
-            for (int col = 0; col < 7; col++)
+            for (int col = 0; col < columns; col++)
             {
                 if (grid[0, col] == '.')
                 {
@@ -78,11 +80,12 @@ namespace ConnectFourProject
 
             return true;
         }
+
         private bool CheckHorizontal(char symbol)
         {
-            for (int row = 0; row < 6; row++)
+            for (int row = 0; row < rows; row++)
             {
-                for (int col = 0; col < 4; col++)
+                for (int col = 0; col < columns - 3; col++)
                 {
                     if (grid[row, col] == symbol &&
                         grid[row, col + 1] == symbol &&
@@ -93,14 +96,15 @@ namespace ConnectFourProject
                     }
                 }
             }
+
             return false;
         }
 
         private bool CheckVertical(char symbol)
         {
-            for (int row = 0; row < 3; row++)
+            for (int row = 0; row < rows - 3; row++)
             {
-                for (int col = 0; col < 7; col++)
+                for (int col = 0; col < columns; col++)
                 {
                     if (grid[row, col] == symbol &&
                         grid[row + 1, col] == symbol &&
@@ -111,14 +115,15 @@ namespace ConnectFourProject
                     }
                 }
             }
+
             return false;
         }
 
         private bool CheckDiagonal(char symbol)
         {
-            for (int row = 0; row < 3; row++)
+            for (int row = 0; row < rows - 3; row++)
             {
-                for (int col = 0; col < 4; col++)
+                for (int col = 0; col < columns - 3; col++)
                 {
                     if (grid[row, col] == symbol &&
                         grid[row + 1, col + 1] == symbol &&
@@ -130,9 +135,9 @@ namespace ConnectFourProject
                 }
             }
 
-            for (int row = 3; row < 6; row++)
+            for (int row = 3; row < rows; row++)
             {
-                for (int col = 0; col < 4; col++)
+                for (int col = 0; col < columns - 3; col++)
                 {
                     if (grid[row, col] == symbol &&
                         grid[row - 1, col + 1] == symbol &&
@@ -146,6 +151,5 @@ namespace ConnectFourProject
 
             return false;
         }
-    } 
-
+    }
 }

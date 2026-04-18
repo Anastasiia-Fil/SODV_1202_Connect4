@@ -26,6 +26,10 @@ namespace ConnectFourProject
         public void StartGame()
         {
             bool playAgain = true;
+            Console.WriteLine("=== Welcome to Connect Four ===");
+            Console.WriteLine("Get 4 symbols in a row to win.");
+            Console.WriteLine("Press any key to start...");
+            Console.ReadKey();
 
             while (playAgain)
             {

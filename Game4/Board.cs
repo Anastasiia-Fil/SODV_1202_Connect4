@@ -28,13 +28,13 @@ namespace ConnectFourProject
         public void DisplayBoard()
         {
             Console.WriteLine();
-            Console.WriteLine(" 1 2 3 4 5 6 7");
+            Console.WriteLine("  1   2   3   4   5   6   7");
 
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < columns; col++)
                 {
-                    Console.Write(" " + grid[row, col]);
+                    Console.Write($" {grid[row, col]} ");
                 }
                 Console.WriteLine();
             }

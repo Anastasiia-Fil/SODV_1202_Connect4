@@ -12,6 +12,7 @@ namespace ConnectFourProject
         public GameController()
         {
             board = new Board();
+
             Console.Write("Enter Player 1 name: ");
             string name1 = Console.ReadLine();
 
@@ -26,10 +27,8 @@ namespace ConnectFourProject
         public void StartGame()
         {
             bool playAgain = true;
-            Console.WriteLine("=== Welcome to Connect Four ===");
-            Console.WriteLine("Get 4 symbols in a row to win.");
-            Console.WriteLine("Press any key to start...");
-            Console.ReadKey();
+
+            ShowWelcomeScreen();
 
             while (playAgain)
             {
@@ -55,14 +54,14 @@ namespace ConnectFourProject
                     {
                         Console.Clear();
                         board.DisplayBoard();
-                        Console.WriteLine($"{currentPlayer.Name} wins!");
+                        ShowWinner();
                         gameRunning = false;
                     }
                     else if (board.IsBoardFull())
                     {
                         Console.Clear();
                         board.DisplayBoard();
-                        Console.WriteLine("The game is a draw.");
+                        ShowDraw();
                         gameRunning = false;
                     }
                     else
@@ -71,13 +70,7 @@ namespace ConnectFourProject
                     }
                 }
 
-                Console.Write("Do you want to play again? (Y/N): ");
-                string answer = Console.ReadLine().ToUpper();
-
-                if (answer != "Y")
-                {
-                    playAgain = false;
-                }
+                playAgain = AskToPlayAgain();
             }
 
             Console.WriteLine("Thanks for playing!");
@@ -87,13 +80,36 @@ namespace ConnectFourProject
         private void SwitchPlayer()
         {
             if (currentPlayer == player1)
-            {
                 currentPlayer = player2;
-            }
             else
-            {
                 currentPlayer = player1;
-            }
+        }
+
+        // 👇 helper methods
+
+        private void ShowWelcomeScreen()
+        {
+            Console.WriteLine("=== Welcome to Connect Four ===");
+            Console.WriteLine("Get 4 symbols in a row to win.");
+            Console.WriteLine("Press any key to start...");
+            Console.ReadKey();
+        }
+
+        private void ShowWinner()
+        {
+            Console.WriteLine($"{currentPlayer.Name} wins!");
+        }
+
+        private void ShowDraw()
+        {
+            Console.WriteLine("The game is a draw.");
+        }
+
+        private bool AskToPlayAgain()
+        {
+            Console.Write("Do you want to play again? (Y/N): ");
+            string answer = Console.ReadLine().ToUpper();
+            return answer == "Y";
         }
     }
 }

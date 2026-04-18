@@ -12,8 +12,14 @@ namespace ConnectFourProject
         public GameController()
         {
             board = new Board();
-            player1 = new HumanPlayer("Player 1", 'X');
-            player2 = new HumanPlayer("Player 2", 'O');
+            Console.Write("Enter Player 1 name: ");
+            string name1 = Console.ReadLine();
+
+            Console.Write("Enter Player 2 name: ");
+            string name2 = Console.ReadLine();
+
+            player1 = new HumanPlayer(name1, 'X');
+            player2 = new HumanPlayer(name2, 'O');
             currentPlayer = player1;
         }
 

@@ -103,21 +103,10 @@ namespace ConnectFourProject
             Console.WriteLine("==============================");
             Console.WriteLine();
 
-            ShowFireworks();
+       
         }
 
-        private void ShowFireworks()
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine("   *     *     *");
-                Console.WriteLine(" *   * *   * *   *");
-                Console.WriteLine("   *     *     *");
-                Console.WriteLine();
-
-                System.Threading.Thread.Sleep(300);
-            }
-        }
+       
 
         private void ShowDraw()
         {

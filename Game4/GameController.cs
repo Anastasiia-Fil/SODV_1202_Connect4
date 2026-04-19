@@ -85,7 +85,7 @@ namespace ConnectFourProject
                 currentPlayer = player1;
         }
 
-        // 👇 helper methods
+      
 
         private void ShowWelcomeScreen()
         {
@@ -97,7 +97,26 @@ namespace ConnectFourProject
 
         private void ShowWinner()
         {
-            Console.WriteLine($"{currentPlayer.Name} wins!");
+            Console.WriteLine();
+            Console.WriteLine("==============================");
+            Console.WriteLine($"      {currentPlayer.Name} WINS!");
+            Console.WriteLine("==============================");
+            Console.WriteLine();
+
+            ShowFireworks();
+        }
+
+        private void ShowFireworks()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("   *     *     *");
+                Console.WriteLine(" *   * *   * *   *");
+                Console.WriteLine("   *     *     *");
+                Console.WriteLine();
+
+                System.Threading.Thread.Sleep(300);
+            }
         }
 
         private void ShowDraw()
